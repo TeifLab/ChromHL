@@ -1,5 +1,7 @@
 # MatrixMicrodomain
 
+Code for computation of chromatin microdomains based on sequence.
+
 ## Overview:
 
 Code written in combination of R and MATLAB for calculation of chromatin microdomains based upon either transcription factor binding or repeat recognition.
