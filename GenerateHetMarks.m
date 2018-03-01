@@ -18,7 +18,7 @@ half_size_high=half_size_low+1;
 
 DNA_seq = abs(DNA_seq);
 
-[K_pwm,K_rev] = PWM_trap(DNA_seq,NaN,0.7,'PAX3_transfac.txt');
+[K_pwm,K_rev] = PWM_affinity(DNA_seq,NaN,0.7,'PAX3_transfac.txt');
 
 % smooth out the affinities across binding sites
 
@@ -49,7 +49,7 @@ K_rev=[K_rev zeros(1,motif_length-1)];
 
 K_sum_PAX3 = K_fwd+K_rev; % can bind to either strand
 
-[K_pwm,K_rev] = PWM_trap(DNA_seq,NaN,0.7,'PAX9_transfac.txt');
+[K_pwm,K_rev] = PWM_affinity(DNA_seq,NaN,0.7,'PAX9_transfac.txt');
 
 % smooth out the affinities across binding sites
 
