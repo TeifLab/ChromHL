@@ -8,8 +8,8 @@ Code written in combination of R and MATLAB for calculation of chromatin microdo
 
 #### Main loop runs as follows:
  
-1. Initialise heterochromatin locations (either by scanning via TRAP algorithm or by location of relevant genomic feature, such as repeat)
-2. Set up CTCF binding sites using TRAP algorithm
+1. Initialise heterochromatin locations (either by calculating binding affinity or by location of relevant genomic feature, such as repeat)
+2. Set up CTCF binding sites by calculating binding affinity
 3. Compute states based on initiation sites and CTCF binding sites, based on biophysical parameters such as the far-field statistical weights for each chromatin state, the statistical weight of forming a boundary between two chromatin states, the cooperativity of the associated protein HP1 and the binding constant of HP1 to each chromatin state
 
 #### Required inputs are:
@@ -25,6 +25,6 @@ Code written in combination of R and MATLAB for calculation of chromatin microdo
 #### Note that:
 
 1. Lattice units are often taken to be approximately equal to the NRL for the region of study, so ~179-189bp.
-2. TRAP algorithm for TF-binding recognition uses a sliding geometric-average window of 501bp, as windows smaller than this are too noisy in terms of predicting heterochromatin from TF-binding
+2. Algorithm for TF-binding recognition uses a sliding geometric-average window of 501bp, as windows smaller than this are too noisy in terms of predicting heterochromatin from TF-binding
 
 Other things to note are that code is based on an original FORTRAN version from @epigenereg, converted into MATLAB by @geejaytee, with some scripts for analysis in R by @geejaytee.
