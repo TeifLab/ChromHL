@@ -95,7 +95,7 @@ K_sum = [zeros(1,left_nucleosomes*lattice_size-(centre_point-half_size_high)) ..
 
 K_sum = reshape(K_sum,[lattice_size left_nucleosomes+1+right_nucleosomes]);
 
-het_marks = max(K_sum,[],1); % As in TRAP calculation affinity per lattice_size-bp region is max of affinities for each bp in region
+het_marks = max(K_sum,[],1); % Affinity is maximum over lattice unit
 
 
 end
