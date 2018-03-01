@@ -19,7 +19,7 @@ centre_point = numbers(DNA_seq<0); % centre point is marked by negative seq valu
 
 DNA_seq = abs(DNA_seq);
 
-[K_pwm,K_rev] = PWM_trap(DNA_seq,NaN,0.7,'CTCF_matrix_Orlov.txt');
+[K_pwm,K_rev] = PWM_affinity(DNA_seq,NaN,0.7,'CTCF_matrix_Orlov.txt');
 
 % smooth out the affinities across binding sites
 
