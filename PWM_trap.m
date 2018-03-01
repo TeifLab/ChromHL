@@ -5,15 +5,9 @@
     %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    % Based on tRap package downloaded from
-    % http://trap.molgen.mpg.de
-
-    % Converted to MATLAB by GJT Mar-17
-    %
-  
 
 
-    function [a_fwd,a_rev] = PWM_trap(varargin)
+    function [a_fwd,a_rev] = PWM_affinity(varargin)
 
     % inputs:
     % - Seq_DNA DNA sequence [encoded as A=1;C=2;G=3;T=4];
