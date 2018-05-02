@@ -5,6 +5,12 @@
     %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    % Based on tRap package downloaded from
+    % http://trap.molgen.mpg.de
+
+    % Converted to MATLAB by GJT Mar-17
+    %
+  
 
 
     function [a_fwd,a_rev] = PWM_affinity(varargin)

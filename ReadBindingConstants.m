@@ -9,7 +9,7 @@ function [CTCF_profile] = ReadBindingConstants(DNA_seq)
 
 % call PWM method for base-pair level binding constants
 
-lattice_size=189;
+lattice_size=161;
 half_size_low=floor(lattice_size/2);
 half_size_high=half_size_low+1;
 

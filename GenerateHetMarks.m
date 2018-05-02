@@ -12,7 +12,7 @@ numbers = (1:length(DNA_seq));
 
 centre_point = numbers(DNA_seq<0); % centre point is marked by negative seq value
 
-lattice_size=189;
+lattice_size=161;
 half_size_low=floor(lattice_size/2);
 half_size_high=half_size_low+1;
 
@@ -95,7 +95,7 @@ K_sum = [zeros(1,left_nucleosomes*lattice_size-(centre_point-half_size_high)) ..
 
 K_sum = reshape(K_sum,[lattice_size left_nucleosomes+1+right_nucleosomes]);
 
-het_marks = max(K_sum,[],1); % Affinity is maximum over lattice unit
+het_marks = max(K_sum,[],1); % As in TRAP calculation affinity per lattice_size-bp region is max of affinities for each bp in region
 
 
 end
