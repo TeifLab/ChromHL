@@ -34,6 +34,9 @@ K_fwd=[K_pwm zeros(1,motif_length-1)];
 K_rev=[K_rev zeros(1,motif_length-1)];
         
 % build shifts of the affinities across the motifs        
+matrix_fwd = K_fwd;
+matrix_rev = K_rev;
+        
 for j=1:motif_length-1
     matrix_fwd=[matrix_fwd; circshift(K_fwd,j)];
     matrix_rev=[matrix_rev; circshift(K_rev,j)];
@@ -45,7 +48,7 @@ K_fwd=max(matrix_fwd,[],1);
 K_rev=max(matrix_rev,[],1);
 
 % PAX3 can bind to either strand
-K_sum_PAX3 = K_fwd+K_rev*(1-K_fwd);
+K_sum_PAX3 = K_fwd+K_rev.*(1-K_fwd);
 
 % Now do the same for PAX9
 % Calculate binding affinities in forward and reverse directions
@@ -63,6 +66,9 @@ K_fwd=[K_pwm zeros(1,motif_length-1)];
 K_rev=[K_rev zeros(1,motif_length-1)];
         
 % build shifts of the affinities across the motifs        
+matrix_fwd = K_fwd;
+matrix_rev = K_rev;
+
 for j=1:motif_length-1
     matrix_fwd=[matrix_fwd; circshift(K_fwd,j)];
     matrix_rev=[matrix_rev; circshift(K_rev,j)];
@@ -74,10 +80,10 @@ K_fwd=max(matrix_fwd,[],1);
 K_rev=max(matrix_rev,[],1);
 
 % PAX9 can bind to either strand
-K_sum_PAX9 = K_fwd+K_rev*(1_K_fwd); % can bind to either strand
+K_sum_PAX9 = K_fwd+K_rev.*(1-K_fwd); % can bind to either strand
 
 % Then combine affinities
-K_sum = K_sum_PAX3+K_sum_PAX9*(1-K_sum_PAX3);
+K_sum = K_sum_PAX3+K_sum_PAX9.*(1-K_sum_PAX3);
 
 % Now compute the geometric mean over 501 bp moving window
 K_sum = 10.^movmean(log10(K_sum),501);
@@ -87,10 +93,6 @@ K_sum = 10.^movmean(log10(K_sum),501);
 % First count the number of units either side of the centre point
 left_nucleosomes = ceil((centre_point-half_size_high)/lattice_size);
 right_nucleosomes = ceil((length(K_sum)-centre_point-half_size_low)/lattice_size);
-
-
-K_sum = [zeros(1,left_nucleosomes*lattice_size-(centre_point-half_size_high)) ...
-    K_sum zeros(1,right_nucleosomes*lattice_size-(length(K_sum)-centre_point-half_size_low))];
 
 % then the number of nucleosomes in string: left_nucleosomes + 1 + right_nucleosomes
 % This ensures that the sequence is completely covered by lattice units

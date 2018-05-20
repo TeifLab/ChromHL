@@ -16,7 +16,6 @@ function [] = ParametersInitMicrodomain(DNA_seq,heterochromatin_marks)
 
 global Lpolymer fNumberOfLigands  eNumberOfChromatinStates
 global m % ligand lengthes: integer, dimension (1:10)
-global mm % (the same as m(g) but real, not integer: double precision, dimension (1:10)
 global nMaxGap % max interaction lengthes : integer, dimension (1:10)
 global w %cooperativity parameters : double precision w(0:10000,0:10,0:10, 0:5)
 global KKK % double precision(10000,10,147,5)
@@ -60,7 +59,7 @@ KKK = zeros(Lpolymer,10,1,5);
 % sigma_12: exp(-delta * energy cost of forming boundary/ RT), so always <=1
 % cK1     : concentration * binding constant of HP1
 % w11     : cooperativity of HP1 on neighbouring lattice units
-s_ratio = 0.2
+s_ratio = 0.2;
 sigma_12 = 1;
 cK1 = 0.0132;
 w11 = 100;
@@ -101,10 +100,11 @@ sigma(2,3)=1;
 sigma(3,2)=1;
 
 % Now set up ligands
+
 % First ligand (HP1)
 g=1;
 m(g)=1; % length of protein in lattice units
-mm(g)=real(m(g)); 
+
 % as there is no unwrapping of HP1 binding
 Unwrap(:,g)=0.; 
 Unwrap(1,g)=1.; 

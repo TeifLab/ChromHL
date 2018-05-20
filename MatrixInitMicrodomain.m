@@ -16,7 +16,6 @@ function [Q,dQdK,dQdE] = MatrixInitUnwrap(ThisSiteNumber, TestSiteNumber)
 
 global Lpolymer fNumberOfLigands rank eNumberOfChromatinStates R
 global m mStart % ligand lengthes: integer, dimension (1:10)
-global mm % (the same as m(g) but real, not integer: double precision, dimension (1:10)
 global nMaxGap % max interaction lengthes : integer, dimension (1:10)
 global MAXnMaxGap MINnMaxGap % max(nMaxGap), min(nMaxGap)
 global w %cooperativity parameters : double precision w(0:10000,0:10,0:10, 0:5)
@@ -72,8 +71,8 @@ dQdE = zeros(eNumberOfChromatinStates,rank,rank);
 for e1=1:eMax
     for e2=1:eMax
         for g1=1:f
-            if (mm(g1)>1)
-                if (n<=(Lpolymer - (mm(g1) - 1)))
+            if (m(g1)>1)
+                if (n<=(Lpolymer - (m(g1) - 1)))
                     i=R*(e1-1)+mStart(g1);
                     j=R*(e2-1)+i+1;
                     if (n>1)
@@ -87,7 +86,7 @@ for e1=1:eMax
                         dQdE(e1,i,j) = Q(i,j);
                     end
                 end %ThisSiteNumber
-            end %mm(g1)
+            end %m(g1)
         end %g1
     end
 end
@@ -97,9 +96,9 @@ end
 for e1=1:eMax
     for e2=1:eMax
         for g1=1:f
-            if (mm(g1)>2)
-                for h1=1:(mm(g1)-2)
-                    if (n>h1 && n<=(Lpolymer - (mm(g1) - h1-1)))
+            if (m(g1)>2)
+                for h1=1:(m(g1)-2)
+                    if (n>h1 && n<=(Lpolymer - (m(g1) - h1-1)))
                         i=R*(e1-1)+mStart(g1)+h1;
                         j=R*(e2-1)+i+1;
                         Q(i,j) = s(n,e1)*KKK(n,g1,h1+1,e1);
@@ -109,7 +108,7 @@ for e1=1:eMax
                         end
                     end % ThisSiteNumber
                 end % h
-            end % (mm(g1)>2)
+            end % (m(g1)>2)
         end % g1
     end
 end
@@ -119,23 +118,23 @@ end
 for e1=1:eMax
     for e2=1:eMax
         for g1=1:f
-            for h1=0:(mm(g1)-1)
-                if (n>=mm(g1)-h1 && n<=Lpolymer-h1)
-                    i=R*(e1-1)+mStart(g1)+mm(g1)-1-h1;
+            for h1=0:(m(g1)-1)
+                if (n>=m(g1)-h1 && n<=Lpolymer-h1)
+                    i=R*(e1-1)+mStart(g1)+m(g1)-1-h1;
                     j=R*(e2-1)+iRightFreeEnd;
-                    if (mm(g1)>1)
+                    if (m(g1)>1)
                         if(n>1)
-                            Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,mm(g1)-h1,e1)*Unwrap(h1+1,g1);
+                            Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1);
                         end
                         if(n==1)                           
-                            Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,mm(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g1);
+                            Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g1);
                         end
                         if (n==TestSiteNumber)
                             dQdK(g1,i,j) = Q(i,j);
                             dQdE(e1,i,j) = Q(i,j);
                         end
                     end
-                    if (mm(g1)==1)
+                    if (m(g1)==1)
                         if (n>1)
                             Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,1,e1)*w(1,g1+1,1,e1+1);
                         end
@@ -160,23 +159,23 @@ for e1=1:eMax
     for e2=1:eMax
         for g1=1:f
             for g2=1:f
-                for h1=0:mm(g1)-1
-                    i=R*(e1-1)+mStart(g1)+mm(g1)-1-h1;
+                for h1=0:m(g1)-1
+                    i=R*(e1-1)+mStart(g1)+m(g1)-1-h1;
                     j=R*(e2-1)+mStart(g2);
-                    if (n>=(mm(g1)-h1) && n<=Lpolymer-mm(g2))
-                        if (mm(g1)>1)
+                    if (n>=(m(g1)-h1) && n<=Lpolymer-m(g2))
+                        if (m(g1)>1)
                             if(n>1)
-                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,g1+1,g2+1,e1+1)*KKK(n,g1,mm(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g2);
+                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,g1+1,g2+1,e1+1)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g2);
                             end
                             if(n==1)
-                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,g1+1,g2+1,e1+1)*KKK(n,g1,mm(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g2)*c0(g1);
+                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,g1+1,g2+1,e1+1)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g2)*c0(g1);
                             end
                             if (n==TestSiteNumber)
 								dQdK(g1,i,j) = Q(i,j);
 								dQdE(e1,i,j) = Q(i,j);
                             end
                         end
-                        if (mm(g1)==1)
+                        if (m(g1)==1)
                             if(n>1)
                                 Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,1,e1)*w(1,g1+1,g2+1,e1+1)*c0(g2);
                             end
@@ -187,7 +186,7 @@ for e1=1:eMax
 								dQdK(g1,i,j) = Q(i,j);
 								dQdE(e1,i,j) = Q(i,j);
                             end
-                        end % mm(g1)
+                        end % m(g1)
                     end %n
                 end %h1
             end %g2
@@ -201,19 +200,19 @@ for e1=1:eMax
     for e2=1:eMax
         for g1=1:f
             for g2=1:f
-                for h2=1:mm(g2)-1
-                    i=R*(e1-1)+mStart(g1)+mm(g1)-1;
+                for h2=1:m(g2)-1
+                    i=R*(e1-1)+mStart(g1)+m(g1)-1;
                     j=R*(e2-1)+mStart(g2)+h2;
-                    if (n>=mm(g1) && n<=Lpolymer-(mm(g2)-h2))
-                        if (mm(g1)>1)
-                            Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,g1+1,g2+1,e1+1)*KKK(n,g1,mm(g1),e1)*Unwrap(h2+1,g2)*c0(g2);
+                    if (n>=m(g1) && n<=Lpolymer-(m(g2)-h2))
+                        if (m(g1)>1)
+                            Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,g1+1,g2+1,e1+1)*KKK(n,g1,m(g1),e1)*Unwrap(h2+1,g2)*c0(g2);
                             if (n==TestSiteNumber)
                                 dQdK(g1,i,j) = Q(i,j);
                                 dQdE(e1,i,j) = Q(i,j);
                             end
                         end
 						
-                        if (mm(g1)==1)
+                        if (m(g1)==1)
                             if(n>1)
                                 Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,1,e1)*w(1,g1+1,g2+1,e1+1)*c0(g2);
                             end
@@ -224,7 +223,7 @@ for e1=1:eMax
 								dQdK(g1,i,j) = Q(i,j);
 								dQdE(e1,i,j) = Q(i,j);
                             end
-                        end % mm(g1)
+                        end % m(g1)
                     end %n
                 end %h2
             end %g2
@@ -263,10 +262,10 @@ end %e2
 for e1=1:eMax
     for e2=1:eMax
         for g2=1:f
-            for h2=0:mm(g2)-1
+            for h2=0:m(g2)-1
                 i=R*(e1-1)+iLeftFreeEnd;
                 j=R*(e2-1)+mStart(g2) + h2;
-                if (n<=Lpolymer-(mm(g2)-h2))
+                if (n<=Lpolymer-(m(g2)-h2))
                     Q(i,j) = s(n,e1)*sigma(e1,e2)*w(1,1,g2+1,e2+1)*Unwrap(h2+1,g2)*c0(g2);
                     if (n==TestSiteNumber)
                         dQdE(e1,i,j) = Q(i,j);
@@ -286,16 +285,16 @@ if(~noGaps)
     for e1=1:eMax
         for e2=1:eMax
             for g1=1:f
-                for h1=0:mm(g1)-1
-                    if (n>=(mm(g1)-h1) && n<Lpolymer)  % hanging out prohibited
-                        i=R*(e1-1)+mStart(g1)+mm(g1)-1-h1;
+                for h1=0:m(g1)-1
+                    if (n>=(m(g1)-h1) && n<Lpolymer)  % hanging out prohibited
+                        i=R*(e1-1)+mStart(g1)+m(g1)-1-h1;
                         j=R*(e2-1)+iGap(1,1);
-                        if (mm(g1)>1)
+                        if (m(g1)>1)
                             if(n>1)
-                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(nMaxGap(g1)+2,g1+1,1,e1+1)*KKK(n,g1,mm(g1)-h1,e1)*Unwrap(h1+1,g1);
+                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(nMaxGap(g1)+2,g1+1,1,e1+1)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1);
                             end
                             if(n==1)
-                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(nMaxGap(g1)+2,g1+1,1,e1+1)*KKK(n,g1,mm(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g1);
+                                Q(i,j) = s(n,e1)*sigma(e1,e2)*w(nMaxGap(g1)+2,g1+1,1,e1+1)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1)*c0(g1);
                             end
                             if (n==TestSiteNumber)
                                 dQdK(g1,i,j) = Q(i,j);
@@ -303,7 +302,7 @@ if(~noGaps)
                             end
                         end
                         
-                        if (mm(g1)==1)
+                        if (m(g1)==1)
                             if(n>1)
                                 Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,1,e1)*w(nMaxGap(g1)+2,g1+1,1,e1+1);
                             end
@@ -314,7 +313,7 @@ if(~noGaps)
                                 dQdK(g1,i,j) = Q(i,j);
                                 dQdE(e1,i,j) = Q(i,j);
                             end %(n==TestSiteNumber)
-                        end %(mm(g1)==1)
+                        end %(m(g1)==1)
                     end %n
                 end %h1
             end %g1
@@ -357,12 +356,12 @@ if(~noGaps)
     for e1=1:eMax
         for e2=1:eMax
             for g2=1:f
-                for h2=0:mm(g2)-1
+                for h2=0:m(g2)-1
                     for jj=MINnMaxGap+1: MAXnMaxGap+1
                         if(jj>nMaxGap(g2))
                             i=R*(e1-1)+iGap(jj,1);
                             j=R*(e2-1)+mStart(g2)+h2;
-                            if (n>1 && n<=Lpolymer-(mm(g2)-h2))
+                            if (n>1 && n<=Lpolymer-(m(g2)-h2))
                                 Q(i,j) = s(n,e1)*sigma(e1,e2)*w(nMaxGap(g2)+2,1,g2+1,e1+1)*Unwrap(h2+1,g2)*c0(g2);
                             end %n
                             if (n==TestSiteNumber)
@@ -388,12 +387,12 @@ if(~noGaps)
         for e2=1:eMax
             for g1=1:f
                 for g2=1:f
-                    for h1=0:mm(g1)-1
+                    for h1=0:m(g1)-1
                         for jj=1:nMaxGap(g2)
-                            if (n>=(mm(g1)-h1) && n<Lpolymer && nMaxGap(g2)>0)  % hanging out prohibited
-                                i=R*(e1-1)+mStart(g1)+mm(g1)-1-h1;
+                            if (n>=(m(g1)-h1) && n<Lpolymer && nMaxGap(g2)>0)  % hanging out prohibited
+                                i=R*(e1-1)+mStart(g1)+m(g1)-1-h1;
                                 j=R*(e2-1)+iGap(jj,g2+1);
-                                if (mm(g1)>1)
+                                if (m(g1)>1)
                                     if(n>1)
                                         Q(i,j) = s(n,e1)*sigma(e1,e2)*w(jj+1,g1+1,g2+1,e1+1)*KKK(n,g1,m(g1)-h1,e1)*Unwrap(h1+1,g1);
                                     end
@@ -404,9 +403,9 @@ if(~noGaps)
                                         dQdK(g1,i,j)= Q(i,j);
                                         dQdE(e1,i,j)= Q(i,j);
                                     end
-                                end %(mm(g1)>1)
+                                end %(m(g1)>1)
                                 
-                                if (mm(g1)==1)
+                                if (m(g1)==1)
                                     if(n>1)
                                         Q(i,j) = s(n,e1)*sigma(e1,e2)*KKK(n,g1,1,e1)*w(jj+1,g1+1,g2+1,e1+1);
                                     end
@@ -449,11 +448,11 @@ if(~noGaps)
     for e1=1:eMax
         for e2=1:eMax
             for g2=1:f
-                for h2=0:mm(g2)-1
+                for h2=0:m(g2)-1
                     if (nMaxGap(g2)>0)
                         i=R*(e1-1)+iGap(1,g2+1);
                         j=R*(e2-1)+mStart(g2)+h2;
-                        if (n>1 && n<=Lpolymer-(mm(g2)-h2))
+                        if (n>1 && n<=Lpolymer-(m(g2)-h2))
                             Q(i,j) = s(n,e1)*sigma(e1,e2)*Unwrap(h2+1,g2)*c0(g2);
                             if (n==TestSiteNumber)
                                 dQdE(e1,i,j)= Q(i,j);

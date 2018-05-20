@@ -30,8 +30,11 @@ motif_length = size(pwm,2);
     
 K_fwd=[K_pwm zeros(1,motif_length-1)];
 K_rev=[K_rev zeros(1,motif_length-1)];
-        
+
 % build shifts of the affinities across the motifs        
+matrix_fwd = K_fwd;
+matrix_rev = K_rev;
+        
 for j=1:motif_length-1
     matrix_fwd=[matrix_fwd; circshift(K_fwd,j)];
     matrix_rev=[matrix_rev; circshift(K_rev,j)];
@@ -43,7 +46,7 @@ K_fwd=max(matrix_fwd,[],1);
 K_rev=max(matrix_rev,[],1);
 
 % CTCF can bind to either strand
-K_sum = K_fwd+K_rev*(1-K_fwd);
+K_sum = K_fwd+K_rev.*(1-K_fwd);
 
 % Now convert the CTCF binding at bp level to binding at lattice unit level
 
