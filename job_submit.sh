@@ -36,7 +36,7 @@ echo "Starting job: $SGE_TASK_ID"
 # "< /dev/null" prevents MATLAB giving errors running
 # non-interactively
 
-matlab -nojvm -nodisplay -r multiple_run_mcd_20  < /dev/null
+matlab -nojvm -nodisplay -r multiple_run_mmd  < /dev/null
 
 echo "Done with job: $SGE_TASK_ID"
 
