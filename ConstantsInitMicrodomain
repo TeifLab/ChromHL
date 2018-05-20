@@ -1,6 +1,6 @@
 % This function sets the numbers for the states in the individual blocks
 % in the matrix (of size RxR), for the block-structured transfer matrix
-% which has overall size ( R * #states) x ( R * #states)
+% which has overall size (R * #states) x R * #states)
 
 function [] = ConstantsInitMicrodomain
 
