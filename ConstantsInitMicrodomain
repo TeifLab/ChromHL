@@ -1,9 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Subroutine ConstantsInitUnwrap
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This function sets the numbers for the states in the individual blocks
+% in the matrix (of size RxR), for the block-structured transfer matrix
+% which has overall size ( R * #states) x ( R * #states)
 
-function [] = ConstantsInitUnwrap
+function [] = ConstantsInitMicrodomain
 
 global fNumberOfLigands rank  eNumberOfChromatinStates R
 global m mStart % ligand lengthes: integer, dimension (1:10) 
@@ -13,21 +12,15 @@ global iGap % states corresponding to g-j-g gaps integer, dimension (1:10000,0:1
 global iLeftFreeEnd iRightFreeEnd % polymer end matrix state numbers
 global noGaps 
 
-
-%=================================================================
-%-----------------------------------------------------------------
-%-----------------------------------------------------------------
-%-----------------------------------------------------------------
-%-----------------------------------------------------------------
-%defining the states for the first ligand-DNA contact and the matrix rank:
-
-
+% Set the maximum and minimum allowedgaps between proteins
 MAXnMaxGap = max(nMaxGap(:));
 MINnMaxGap = min(nMaxGap(:));
 
+% Count states, mStart holds where each ligand binding states start
 mStart = zeros([fNumberOfLigands 1]);
 iGap = zeros([MAXnMaxGap fNumberOfLigands+1]);
 
+% First enumerate the ligands
 for g=1:fNumberOfLigands
     if (g==1)
         mStart(g)=1;
@@ -36,12 +29,16 @@ for g=1:fNumberOfLigands
         mStart(g)=mStart(g-1)+m(g-1);
     end
 end % g
+
+% Then set states for left free end and right free end
 iLeftFreeEnd=mStart(fNumberOfLigands)+m(fNumberOfLigands);
 iRightFreeEnd=iLeftFreeEnd+1;
 
-if(noGaps)
+% Then go through each potential gap between proteins and enumerate
+% those states
+if(noGaps) % If there are no gaps, only one more state which is a "not-bound" state
     rank=iRightFreeEnd+1;
-else
+else % enumerate gaps between proteins
     rank=iRightFreeEnd;
     %g1-j-g2 gaps:
     for g=1:fNumberOfLigands
@@ -66,10 +63,9 @@ else
     
 end %(noGaps)
 
+% Set R, number of states per chromatin state and
+% rank, the total number of states (which is R * # chromatin states)
 R = rank;
 rank = eNumberOfChromatinStates*rank;
 
-end %subroutine ConstantsInitUnwrap
-
-
-
+end 
