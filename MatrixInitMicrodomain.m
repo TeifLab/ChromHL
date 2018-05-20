@@ -1,20 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This function calculates the matrix for the i'th polymer unit
 %
-% Subroutine MatrixInitUnwrap:
-%	calculates the matrix for the i'th polymer unit
+% Q(rank,rank)                            : is the matrix of statistical weights
+% dQdK(fNumberOfLigands,rank,rank)        : is the matrix of derivatives of Q by c0(g), g=1..fNumberOfLigands
+% dQdE(eNumberOfChromatinStates,rank,rank): is the matrix of derivatives of Q by s, f=1..eNumberOfChromatinStates
 %
-% Q(rank,rank) - matrix of statistical weights
-% dQdK(fNumberOfLigands,rank,rank) - matrix of derivatives by c0(g), g=1,2,3
-% this derivative is taken only at the matrix corresponding to the test site.
-%
-% c0(g) - bulk molar concentration of g-type ligand in solution
-% ThisSiteNumber - the number of the site for which we calculate the matrix
-% TestSiteNumber - the number of the site for which we calculate the derivatives
-% KKK - combined binding constant (ligand interaction with polymer units # i,i-1, i+1)
-% g1, g2 - ligand type
-% h1, h2 - number of unwrapped protein units
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% c0(g) is the bulk molar concentration of g-type ligand in solution
+% ThisSiteNumber is the number of the site we calculate the matrix
+% TestSiteNumber if the number of the site for calculating the derivatives
+% KKK is the combined binding constant
+% g1,g2 ligand type
+% h1,h2 number of unwrapped protein units
+% e1,e2 chromatin state
 
 function [Q,dQdK,dQdE] = MatrixInitUnwrap(ThisSiteNumber, TestSiteNumber)
 
@@ -33,6 +29,7 @@ global iLeftFreeEnd iRightFreeEnd % polymer end matrix state numbers
 global noGaps
 global lig1mod lig2mod lig3mod lig4mod lig5mod lig6mod
 
+% Check if ligands are modified
 if(lig2mod)
     c0(2)=c0(1);
 end
@@ -59,6 +56,8 @@ if(lig6mod)
     c0(6)=c0(1);
 end
 
+% generate some aliases and initialise transfer matrix Q
+% and derivatives dQdK, dQdE
 n=ThisSiteNumber;
 f=fNumberOfLigands;
 eMax=eNumberOfChromatinStates;
@@ -66,8 +65,8 @@ Q = zeros(rank,rank);
 dQdK = zeros(fNumberOfLigands,rank,rank);
 dQdE = zeros(eNumberOfChromatinStates,rank,rank);
 
-
-% Non-zero elements of the transfer matrix Qi,j(n) and dQdK elements:
+% Go through each case and compute the non-zero elements of the transfer matrix
+% Qij, and its derivatives dQdK and dQdE
 
 % 1) 1st unit of g-type protein followed by the 2nd unit:
 for e1=1:eMax
