@@ -1,24 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Subroutine MapOfBindingCalc calculates the map ofbinding
-% for a given c0(g), g=1,2,3
-% ...........dStatda to be added later..............
-%
-% Stat - statsum
-% max - after Trace of the current statsum value reaches max, StatSum
-%       is being normilized by max
-% NormCount - number of normalizations
-% noLeftOverhang=.true. prohibits ligand overhang from the left DNA end
-% noRightOverhang=.true. prohibits ligand overhang from the right DNA end
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This function is called to calculate the 
+% protein binding and chromatin state probability at
+% TestSiteNumber
 
 function [c,teta] = PointOfMapOfBindingCalc(TestSiteNumber)
 
 global fNumberOfLigands rank eNumberOfChromatinStates Lpolymer
 
-% Boundary conditions:
-
+% Set the boundary conditions for the vectors
+% LeftVect and RightVect and the derivatives
+% with respect to K (for protein concentration)
+% and with respect to E (for the chromatin state)
 LeftVect=ones([1 rank]);
 RightVect=ones([rank 1]);
 LeftVectdK=zeros([fNumberOfLigands 1 rank]);
@@ -26,25 +17,32 @@ RightVectdK=zeros([fNumberOfLigands rank 1]);
 LeftVectdE=zeros([eNumberOfChromatinStates 1 rank]);
 RightVectdE=zeros([eNumberOfChromatinStates rank 1]);
 
+% These will hold the point of binding map
 c = zeros([fNumberOfLigands+1 1]);
 teta = zeros([eNumberOfChromatinStates 1]);
 
-% Initialization:
-
+% Initialize the variables:
 StatSum = 0;
 dStatdK = zeros([fNumberOfLigands 1]);
 dStatdE = zeros([eNumberOfChromatinStates 1]);
 
-% We have to calculate Partition Function for each ThisSiteNumber
-
+% We have to calculate the partition function Z
+% and the derivatives dZ/dK and dZ/dE for ther
+% binding map 
 for ThisSiteNumber = 1:Lpolymer
     
-    %normalization:
+    % if the function gets above this threshold
+    % then normalise by this and count how
+    % often this happens
+    % this helps with numerical stability of the algorithm
     max=1.e25;
     NormCount=0;
     
+    % Calculate the L1 norm of the LeftVector
     Trace1 = sum(LeftVect(1,:));
     
+    % If we are above the threshold (either in the vector, or in the 
+    % partition function itself), then normalise
     if (StatSum>max || Trace1> max)
         LeftVectdK = LeftVectdK/max;
         LeftVectdE = LeftVectdE/max;
@@ -53,68 +51,45 @@ for ThisSiteNumber = 1:Lpolymer
         NormCount = NormCount+1;
     end
     
-    %StatSum calculation:
+    % Get the transfer matrix and the derivatives of the transfer matrix
+    [Q, dQdK, dQdE] = MatrixInitMicrodomain(ThisSiteNumber,TestSiteNumber);
     
-    [Q, dQdK, dQdE] = MatrixInitUnwrap(ThisSiteNumber,TestSiteNumber); %%CHECK THIS
-    
+    % For each ligand
     for g=1:fNumberOfLigands
-        %LVDKg1z = squeeze(LeftVectdK(g,1,:))';
-        %dQdKgzz = squeeze(dQdK(g,:,:));
-		
-		LVDKg1z = shiftdim(LeftVectdK(g,1,:))';
-		dQdKgzz = shiftdim(dQdK(g,:,:));
-		
         
-        %disp(size(LVDKg1z))
-        %disp(size(Q))
-        
+	% generate some temporary vectors to ensure the indices are correct
+	% in the below multiplication
+	LVDKg1z = shiftdim(LeftVectdK(g,1,:))';
+	dQdKgzz = shiftdim(dQdK(g,:,:));
+		
+        % update the derivative of the vector (d/dK) for each ligand
         LeftVectdK(g,1,1:rank) = LVDKg1z * Q ...
             +LeftVect(1,:) * dQdKgzz;
     end % g
     
+    % for each chromain state
     for e=1:eNumberOfChromatinStates
-        %LVDEe1z = squeeze(LeftVectdE(e,1,:))';
-        %dQdEgzz = squeeze(dQdE(e,:,:));
-		
-		LVDEe1z = shiftdim(LeftVectdE(e,1,:))';
+        
+	% generate the temp vectors again to ensure correct indices in the
+	% below multiplication
+	
+	LVDEe1z = shiftdim(LeftVectdE(e,1,:))';
         dQdEezz = shiftdim(dQdE(e,:,:));
-		
+	
+	% update the derivative of the vector (d/dE) for each chromatin state
         LeftVectdE(e,1,1:rank) = LVDEe1z * Q ...
             +LeftVect(1,:) * dQdEezz;
     end
     
     LeftVect=LeftVect * Q;
     
-    
-    %for debug----------------------------
-    %     if (ThisSiteNumber==TestSiteNumber) then
-    %     	fprintf(fid7,'n= %s\n',ThisSiteNumber);
-    % 	fprintf(fid7,'%s\n','Nonzero Q(i,j) elements:');
-    % 	for i=1:rank
-    % 	    for j=1:rank
-    %     		if Q(i,j)~=0
-    % 		    fprintf(fid7,'Q(%d,%d) %f\n',i,j,Q(i,j));
-    % 		end
-    % 	    end %j
-    % 	end %i
-    %
-    % 	for i=1:rank
-    % 	    for j=1:rank
-    % 		if dQdK(i,j)~=0
-    % 		   fprintf(fid7,'dQdK(%d,%d) %f\n',i,j,dQdK(i,j));
-    % 		end
-    % 	    end %j
-    % 	end %i
-    %
-    %
-    %     end %(ThisSiteNumber.eq.TestSiteNumber)
-    
-    % for debug----------------------------
-    
-    
 end %ThisSiteNumber
 
-%find statsum multiplying LeftVect by RightVect
+% Find the partition function and derivatives
+% by multiplying leftVect by RightVect
+% and updating function
+% also update dZ/dK 
+% and dZ/dE
 for i=1:rank
     for g=1:fNumberOfLigands
         dStatdK(g)=dStatdK(g) + LeftVectdK(g,1,i)*RightVect(i,1) ...
@@ -130,17 +105,17 @@ for i=1:rank
     StatSum=StatSum + LeftVect(1,i)*RightVect(i,1);
 end %i
 
-
-%find the probability of protein binding
+% Use partition function to calculate probability of protein binding
 for g=1:fNumberOfLigands
-    c(g+1)=dStatdK(g)/StatSum; % "derivatives" were not divided by K(n,g), so I don't multiply here %+1 as
+    c(g+1)=dStatdK(g)/StatSum; 
 end %g
 
-%find the probability of chromatin state e
+% Use partition function to calculate probability of chromatin state
 for e=1:eNumberOfChromatinStates
-    teta(e)=dStatdE(e)/StatSum; % "derivatives" were not divided by s(e), so I don't multiply here
+    teta(e)=dStatdE(e)/StatSum; 
 end %e
 
+% Set unbound protein binding probability
 c(1)=1.-1./StatSum*(max^NormCount);
 
 end
