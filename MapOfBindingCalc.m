@@ -1,5 +1,8 @@
 % This calculates the binding map by calling PointOfMapOfBindingCalc 
 % for each unit in the lattice, returning it in cMap and tetaMap
+%
+% Note that this and PointOfMapOfBindingCalc can be sped up by
+% pre-calculating the transfer matrices and derivatives
 
 function[cMap,tetaMap] = MapOfBindingCalc()
 
@@ -26,7 +29,4 @@ for TestSiteNumber=1:Lpolymer
     
 end 
 
-
-
 end
-
