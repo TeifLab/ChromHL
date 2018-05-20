@@ -31,7 +31,6 @@ global Lpolymer fNumberOfLigands rank NumberOfPoints eNumberOfChromatinStates R
 global X_spacer L_spacer R_spacer
 global Seq Seq1 % polymer sequence:  integer, dimension (1:10000)
 global m mStart % ligand lengthes: integer, dimension (1:10) 
-global mm % (the same as m(g) but real, not integer: double precision, dimension (1:10) 
 global nMaxGap % max interaction lengthes : integer, dimension (1:10) 
 global MAXnMaxGap MINnMaxGap % max(nMaxGap), min(nMaxGap)
 global w %cooperativity parameters : double precision w(0:10000,0:10,0:10, 0:5)
