@@ -1,4 +1,4 @@
-# MatrixMicrodomain
+# ChromHL
 
 Code for computation of chromatin microdomains based on sequence.
 
