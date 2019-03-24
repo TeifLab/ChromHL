@@ -4,7 +4,8 @@
 % and
 % sigma(i,j)        : overall energy costs of forming boundaries between states i and j
 % s(n,e)            : statistical weights of each state at each lattice unit
-% KKK(n,:,g,:)      : binding constants for each protein to each state at each lattice unit
+% KKK(n,g,l,e)      : binding constants for each protein g to each state (element 4) at each lattice unit n, 
+%                   : proteins have binding length 1:max(l)
 % w(n+1,g+1,h+1,e+1): cooperativity of binding between proteins g and h at a distance n for state e
 %                   : Note that due to MATLAB not using 0-based arrays, each index in w is incremented
 %                   : by 1
@@ -15,13 +16,13 @@
 function [] = ParametersInitMicrodomain(DNA_seq,heterochromatin_marks)
 
 global Lpolymer fNumberOfLigands  eNumberOfChromatinStates
-global m % ligand lengthes: integer, dimension (1:10)
-global nMaxGap % max interaction lengthes : integer, dimension (1:10)
-global w %cooperativity parameters : double precision w(0:10000,0:10,0:10, 0:5)
-global KKK % double precision(10000,10,147,5)
-global Unwrap % double precision Unwrap(0:200,1:10)
-global c0 % c0(10)
-global s sigma % s(1:10000,1:5), sigma(1:5,1:5)
+global m % ligand lengths
+global nMaxGap % max interaction lengths 
+global w % cooperativity parameters  
+global KKK % binding constants
+global Unwrap % unwrapping constants
+global c0 % concentrations
+global s sigma % s for states per lattice unit, sigma for forming boundaries between lattice units
 global noGaps
 
 % Change these lines for more binding ligands and more chromatin states
