@@ -26,7 +26,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 #### Technical notes:
 
 1. Lattice units are often taken to be approximately equal to the NRL for the region of study, so ~179-189bp.
-2. The initiation of heterochromatin based on TF-binding is currently in a sliding geometric-average window of 501bp; this parameters can be changed by the user
+2. The initiation of heterochromatin based on TF-binding is currently in a sliding geometric-average window of 501bp; these parameters can be changed by the user.
 3. Historically, the code is based on the Fortran version from @epigenereg, converted into MATLAB by @geejaytee, with some scripts for analysis in R by @geejaytee.
 
 #### How to cite:
