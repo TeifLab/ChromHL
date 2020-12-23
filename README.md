@@ -1,10 +1,10 @@
 # ChromHL
 
-Code for computation of chromatin microdomains based on sequence.
+The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs) marked by di- and trimethylation of histone H3 at lysine 9, which have a typical size of 3-10 nucleosomes. However, the (epi)genetic determinants of their location and boundaries are only partly understood. Here, we compare four HND types in mouse embryonic stem cells, that are defined by histone methylases SUV39H1/2 or GLP, transcription factor ADNP or chromatin remodeller ATRX. Based on a novel chromatin hierarchical lattice framework termed **ChromHL**, we are able to predict HND maps with singe-nucleotide resolution. We find that HND nucleation can be rationalized by DNA sequence specific protein binding to PAX3/9, ADNP and LINE1 repeats. Depending on type of microdomains, boundaries are determined either by CTCF binding sites or by nucleosome-nucleosome and nucleosome-HP1 interactions. Our new framework allows predicting how patterns of H3K9me2/3 and other chromatin nanodomains are established and changed in processes such as cell differentiation.
 
 ## Overview:
 
-Code written in combination of R and MATLAB for calculation of chromatin microdomains based upon either transcription factor binding or repeat recognition.
+This code is written in combination of R and MATLAB. It allows calculations of the epichromatin landscape for a individual genomic region, as well as bulk calculations for a set of genomic regions edfined in the FASTA file.
 
 #### Main loop runs as follows:
  
@@ -22,9 +22,14 @@ Code written in combination of R and MATLAB for calculation of chromatin microdo
 1. Concentration (in units of initial HP1 concentration) of HP1 binding
 2. Probability of each chromatin state per lattice unit.
 
-#### Note that:
+#### Note:
 
 1. Lattice units are often taken to be approximately equal to the NRL for the region of study, so ~179-189bp.
 2. Algorithm for TF-binding recognition uses a sliding geometric-average window of 501bp, as windows smaller than this are too noisy in terms of predicting heterochromatin from TF-binding
 
-Other things to note are that code is based on an original FORTRAN version from @epigenereg, converted into MATLAB by @geejaytee, with some scripts for analysis in R by @geejaytee.
+Historically, the code is based on an original FORTRAN version from @epigenereg, converted into MATLAB by @geejaytee, with some scripts for analysis in R by @geejaytee.
+
+#### How to cite:
+
+Thorn G.J., Clarkson C.T., Rademacher A., Mamayusupova H., Schotta G., Rippe K., Teif V.B. (2020) DNA sequence-dependent formation of heterochromatin nanodomains. bioRxiv 2020.12.20.423673 https://www.biorxiv.org/content/10.1101/2020.12.20.423673v1
+
