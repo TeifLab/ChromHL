@@ -6,28 +6,28 @@ The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs)
 
 This code is written in combination of R and MATLAB. It allows calculations of the epichromatin landscape for a individual genomic region, as well as bulk calculations for a set of genomic regions edfined in the FASTA file.
 
-#### Main loop runs as follows:
+#### Main calculation loop:
  
 1. Initialise heterochromatin locations (either by calculating binding affinity or by location of relevant genomic feature, such as repeat)
 2. Set up CTCF binding sites by calculating binding affinity
 3. Compute states based on initiation sites and CTCF binding sites, based on biophysical parameters such as the far-field statistical weights for each chromatin state, the statistical weight of forming a boundary between two chromatin states, the cooperativity of the associated protein HP1 and the binding constant of HP1 to each chromatin state
 
-#### Required inputs are:
+#### Required inputs:
 
-1. Sequence of region to simulate.
-2. Location of relevant repeats (as part of a BED-like file), if repeats are being used as initiation sites.
+1. The sequences of the region(s) to simulate.
+2. Weight matrices for TFs that are taken into account
+3. Location of sequence repeats (as part of a BED-like file), if repeats are being used as initiation sites.
 
-#### Outputs are:
+#### Outputs:
 
 1. Concentration (in units of initial HP1 concentration) of HP1 binding
 2. Probability of each chromatin state per lattice unit.
 
-#### Note:
+#### Technical notes:
 
 1. Lattice units are often taken to be approximately equal to the NRL for the region of study, so ~179-189bp.
-2. Algorithm for TF-binding recognition uses a sliding geometric-average window of 501bp, as windows smaller than this are too noisy in terms of predicting heterochromatin from TF-binding
-
-Historically, the code is based on an original FORTRAN version from @epigenereg, converted into MATLAB by @geejaytee, with some scripts for analysis in R by @geejaytee.
+2. The initiation of heterochromatin based on TF-binding is currently in a sliding geometric-average window of 501bp; this parameters can be changed by the user
+3. Historically, the code is based on the Fortran version from @epigenereg, converted into MATLAB by @geejaytee, with some scripts for analysis in R by @geejaytee.
 
 #### How to cite:
 
