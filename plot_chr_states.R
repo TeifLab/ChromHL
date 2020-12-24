@@ -3,7 +3,7 @@
 
 in.files <- dir(pattern="^chr.*txt$")
 
-# based on lattice size, calculate the centre of the region in terms of the lattic
+# based on lattice size, calculate the centre of the region in terms of the lattice
 lattice_size <- 161
 no_nucs <- floor((ceiling(40201/lattice_size))/2)*2+1
 reg_centre <-ceiling(no_nucs/2)
