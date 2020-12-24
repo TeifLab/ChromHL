@@ -6,21 +6,21 @@ The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs)
 
 This code is written in combination of R and MATLAB. It allows calculations of the epichromatin landscape for a individual genomic region, as well as bulk calculations for a set of genomic regions defined in the FASTA file.
 
-### System requirements
-#### For running the model and analysing the outputs
+## System requirements
+### For running the model and analysing the outputs
 - MATLAB - https://uk.mathworks.com/ (tested on >R2018a); this may work on Octave or other open source compatible but is not guaranteed 
 - R - https://cran.r-project.org/ (tested on >v2.12)
-#### For generating sequences to compute over
+### For generating sequences to compute over
 - bedtools - https://bedtools.readthedocs.io/ (tested on >v2.24)
 
-### Installation and demo running instructions
+## Installation and demo running instructions
 - Clone the github repository.
 - From a MATLAB command line, run ````multiple_run_chromhl.m````.
 - Analysis scripts (not required):
     - From an R command line, run ````plot_chr_states.R```` for a basic visualisation.
     
-### Code overview
-#### Main calculation loop
+## Code overview
+### Main calculation loop
  
 1. Initialise heterochromatin locations (either by calculating binding affinity or by location of relevant genomic feature, such as repeat)
 
@@ -32,18 +32,18 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 3. Compute states based on initiation sites and CTCF binding sites, based on biophysical parameters such as the far-field statistical weights for each chromatin state, the statistical weight of forming a boundary between two chromatin states, the cooperativity of the associated protein HP1 and the binding constant of HP1 to each chromatin state
 
 
-#### Required inputs
+### Required inputs
 
 1. The sequences of the region(s) to simulate.
 2. The weight matrices for all proteins binding to the sequence that are taken into account.
 3. The location of sequence repeats (as part of a BED-like file), if repeats are being used as initiation sites.
 
-#### Outputs
+### Outputs
 
 1. Concentration (in units of initial HP1 concentration) of HP1 binding.
 2. Probability of each chromatin state per lattice unit.
 
-#### Technical notes
+### Technical notes
 
 1. Lattice units are often taken to be approximately equal to the NRL for the region of study, so ~179-189bp. This is set in ````CalculatePAX39Affinity.m```` and ````CalculateCTCFAffinity.m````.
 2. The initiation of heterochromatin based on TF-binding is currently in a sliding geometric-average window of 501bp; this can be changed by the user in ````CalculatePAX39Affinity.m````.
