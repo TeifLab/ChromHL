@@ -25,6 +25,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 1. Initialise heterochromatin locations (either by calculating binding affinity or by location of relevant genomic feature, such as repeat)
 
     a. Binding affinity of initiation factors is calculated using a sliding window along the sequence, which is then averaged using a geometric mean across a 501-bp centred window. If the mean affinity in a lattice unit is greather than some fixed threshold, then the lattice unit is initialised as being in heterochromatin state, otherwise it remains as euchromatin.
+    
     b. For repeats or other genomic features, the lattice unit where the centre of the feature is located is initialised as being in heterochromatin state
 2. Set up CTCF binding sites by calculating binding affinity
 
