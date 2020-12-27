@@ -14,18 +14,22 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 - bedtools - https://bedtools.readthedocs.io/ (tested on >v2.24)
 
 ## Installation instructions
-- Clone the github repository
-- From a MATLAB command line, run ````multiple_run_all.m````
-    - This will generate one text file per input FASTA file (four, in the case of the demo) containing the predicted HP1 binding, and the probabilities of being in the three chromatin states (heterochromatin, euchromatin, bound to CTCF)
-- Analysis scripts (not required):
-    - From an R command line, run ````plot_chr_states.R```` for a basic visualisation.
+- Clone the github repository.
+
+### For standalone running on a few regions (including the demo)
+- From a MATLAB command line, run ````multiple_run_all.m````.
+    - This will generate one text file per input FASTA file (four, in the case of the demo) containing the predicted HP1 binding, and the probabilities of being in the three chromatin states (heterochromatin, euchromatin, bound to CTCF).
     
 ### For a task array job on a SGE
-- Make a directory ````individual_regions```` containing the individual FASTA files as ````gene_region_XXXX.fa```` 
-- Alter the header ````-t```` in ````job_submit.sh```` for the number of tasks (ceiling(number of regions/1000))
-- Change the other submission parameters in the header of the ````job_submit.sh```` script
-- Submit the job script ````job_submit.sh````
+- Make a directory ````individual_regions```` containing the individual FASTA files as ````gene_region_XXXX.fa````.
+- Alter the header ````-t```` in ````job_submit.sh```` for the number of tasks (ceiling(number of regions/1000)).
+- Change the other submission parameters in the header of the ````job_submit.sh```` script.
+- Submit the job script ````job_submit.sh````.
+    - The text output files will be generated in a directory ````Text_output```` ready for processing.
     
+### For a basic visualisation
+- From an R command line, run ````plot_chr_states.R```` inside the directory containing the text outputs.
+
 ## Code overview
 ### Main calculation loop
  
