@@ -40,4 +40,4 @@ zz = strrep(Seq_DNA(i).header,':','.');
 
 save(['output-' zz '.mat'],'profiles');
 
-% zz is returned to multiple_run_mcd_mmd.m, and is used there to rename the output file
+% zz is returned to multiple_run_<something>.m, and is used there to rename the output file
