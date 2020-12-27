@@ -32,7 +32,7 @@ echo "Starting job: $SGE_TASK_ID"
 
 # Run matlab without display, without jvm 
 # -r is the option for which script to run, in this case
-# multiple_run_mcd_20 (do not add .m)
+# multiple_run_chromhl (do not add .m)
 # "< /dev/null" prevents MATLAB giving errors running
 # non-interactively
 
