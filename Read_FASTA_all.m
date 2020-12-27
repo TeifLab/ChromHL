@@ -69,10 +69,11 @@ for i=1:length(FASTA_files)
     end
     
     % Set up metadata for each sequence
+    % centre_point is the centre of the domain, used for centering the lattice units
     Seq_DNA(i).header   = header;
     Seq_DNA(i).sequence = Seq;
     Seq_DNA(i).length   = seq_length;
-    Seq_DNA(i).centre_point = 20101;
+    Seq_DNA(i).centre_point = 4001;
     Seq_DNA(i).het_marks = zeros(1,seq_length);
     
     % As no het_marks predetermined, het_marks = 0 along all the length. Change this if
