@@ -29,7 +29,7 @@ try
         
         % Read the sequences matching the pattern below (in the [])
         % Change this if FASTA sequences are elsewhere
-        Seq_DNA=Read_FASTA_all(['../individual_regions/gene_region_' identifier '*.fa']);
+        Seq_DNA=Read_FASTA_all(['individual_regions/gene_region_' identifier '*.fa']);
         
         % If we have sequences (in the Seq_DNA structure)
         if ~isempty(Seq_DNA)
