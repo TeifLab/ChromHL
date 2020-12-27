@@ -24,7 +24,7 @@
 #$ -e job-nobackup.$JOB_ID.$TASK_ID.err
 #$ -cwd
 #$ -m beas
-#$ -M gthorn@essex.ac.uk
+#$ -M <email> for notifications
 #$ -t 1:37
 #$ -tc 20
 
