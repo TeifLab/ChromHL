@@ -19,6 +19,12 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 - Analysis scripts (not required):
     - From an R command line, run ````plot_chr_states.R```` for a basic visualisation.
     
+### For a task array job on a SGE
+- Make a directory ````individual_regions```` containing the individual FASTA files as ````gene_region_XXXX.fa```` 
+- Alter the header ````-t```` in ````job_submit.sh```` for the number of tasks (ceiling(number of regions/1000))
+- Change the other submission parameters in the header of the ````job_submit.sh```` script
+- Submit the job script ````job_submit.sh````
+    
 ## Code overview
 ### Main calculation loop
  
