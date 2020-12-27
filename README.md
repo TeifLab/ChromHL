@@ -13,9 +13,10 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 ### For generating sequences to compute over
 - bedtools - https://bedtools.readthedocs.io/ (tested on >v2.24)
 
-## Installation and demo running instructions
-- Clone the github repository.
-- From a MATLAB command line, run ````multiple_run_all.m````. This will generate four text files, one for each demo FASTA file, containing the predicted HP1 binding, and the probabilities of being in the three chromatin states (heterochromatin, euchromatin, bound to CTCF)
+## Installation instructions
+- Clone the github repository
+- From a MATLAB command line, run ````multiple_run_all.m````
+    - For the demo four FASTA files, this will generate four text files, one for each demo FASTA file, containing the predicted HP1 binding, and the probabilities of being in the three chromatin states (heterochromatin, euchromatin, bound to CTCF)
 - Analysis scripts (not required):
     - From an R command line, run ````plot_chr_states.R```` for a basic visualisation.
     
