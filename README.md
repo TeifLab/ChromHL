@@ -15,7 +15,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 
 ## Installation and demo running instructions
 - Clone the github repository.
-- From a MATLAB command line, run ````multiple_run_chromhl.m````.
+- From a MATLAB command line, run ````multiple_run_all.m````.
 - Analysis scripts (not required):
     - From an R command line, run ````plot_chr_states.R```` for a basic visualisation.
     
