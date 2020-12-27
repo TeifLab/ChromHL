@@ -1,7 +1,7 @@
-% This script cycles through each gene region and calculates binding map
-%
-% SGE_TASK_ID contains the number of the task
-%
+% This script is run by the SGE shell script job_submit.sh
+% SGE_TASK_ID is the environment variable which holds the number of the task
+% The individual FASTA files are stored in a directory ../individual_regions/gene_region_XXXX.fa
+% where XXXX is a zero padded numeric ID
 
 % Start the timer
 tic;
