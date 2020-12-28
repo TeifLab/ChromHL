@@ -8,7 +8,7 @@ The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs)
 
 ## Introduction
 
-This code is written in combination of R and MATLAB. It allows calculations of the epichromatin landscape for a individual genomic region, as well as bulk calculations for a set of genomic regions defined in the FASTA file.
+This code is written in combination of R and MATLAB. It allows calculations of the epigenetic chromatin landscape for a individual genomic region, as well as bulk calculations for a set of genomic regions defined in the FASTA file.
 
 ## System requirements
 ### For running the model and analysing the outputs
