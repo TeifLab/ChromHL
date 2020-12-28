@@ -22,7 +22,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 
 ### For standalone running on a few regions (including the demo)
 - From a MATLAB command line, run ````multiple_run_all.m````.
-    - This will generate one text file per input FASTA file (four, in the case of the demo) containing the predicted HP1 binding, and the probabilities of being in the three chromatin states (heterochromatin, euchromatin, bound to CTCF).
+    - This will generate one text file per input FASTA file (four, in the case of the demo) containing the predicted HP1 binding, and the probabilities of being in each of the chromatin states (three chromatin states in this example).
     
 ### For a task array job on a SGE
 - Make a directory ````individual_regions```` containing the individual FASTA files as ````gene_region_XXXX.fa````.
