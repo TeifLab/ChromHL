@@ -4,6 +4,10 @@ The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs)
 
 ![alt text](https://github.com/TeifLab/ChromHL/blob/master/GitHub_Header_v2.png?raw=true)
 
+<p align="center">
+  <img width="460" height="300" src="https://github.com/TeifLab/ChromHL/blob/master/GitHub_Header_v2.png">
+</p>
+
 ## Introduction
 
 This code is written in combination of R and MATLAB. It allows calculations of the epichromatin landscape for a individual genomic region, as well as bulk calculations for a set of genomic regions defined in the FASTA file.
