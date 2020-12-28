@@ -5,7 +5,7 @@ The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs)
 ![alt text](https://github.com/TeifLab/ChromHL/blob/master/GitHub_Header_v2.png?raw=true)
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/TeifLab/ChromHL/blob/master/GitHub_Header_v2.png">
+  <img src="https://github.com/TeifLab/ChromHL/blob/master/GitHub_Header_v2.png">
 </p>
 
 ## Introduction
