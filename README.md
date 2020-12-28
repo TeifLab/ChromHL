@@ -8,7 +8,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
 
 ## System requirements
 ### For running the model and analysing the outputs
-- MATLAB - https://uk.mathworks.com/ (tested on >R2018a); this may work on Octave or other open source compatible but is not guaranteed 
+- MATLAB - https://uk.mathworks.com/ (tested on >R2018a); this should also work on Octave (https://www.gnu.org/software/octave) instead of MATLAB, but it was not tested.
 - R - https://cran.r-project.org/ (tested on >v2.12)
 ### For generating sequences to compute over
 - bedtools - https://bedtools.readthedocs.io/ (tested on >v2.24)
