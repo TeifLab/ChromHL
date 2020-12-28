@@ -34,3 +34,6 @@ This program flow is relative to running in standalone mode, running the script 
 ## Expected running time
 
   - For the four 8000-bp sequences provided as demonstration, the calculation of all maps takes approximately 5 seconds on an Intel Core i7-8550U CPU with 8 GB RAM.
+      
+      - Output files https://github.com/TeifLab/ChromHL/blob/master/chrF.CTCF-only.txt, https://github.com/TeifLab/ChromHL/blob/master/chrF.null-null.txt, https://github.com/TeifLab/ChromHL/blob/master/chrF.one-PAX3.txt and https://github.com/TeifLab/ChromHL/blob/master/chrF.PAX3-fwd-rev.txt should be generated
+      
