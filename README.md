@@ -43,6 +43,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
     a. As for the initiation factors, the binding affinity for CTCF is calculated using a sliding window, without any further averaging; if the affinity within a lattice unit crosses a fixed threshold, the unit is initialised as the CTCF-bound state.
 3. Compute states based on initiation sites and CTCF binding sites, based on biophysical parameters such as the far-field statistical weights for each chromatin state, the statistical weight of forming a boundary between two chromatin states, the cooperativity of the associated protein HP1 and the binding constant of HP1 to each chromatin state
 
+More detailed information on the calculation loop is here: Program_Flow.md
 
 ### Required inputs
 
