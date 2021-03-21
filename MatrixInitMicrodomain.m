@@ -12,7 +12,7 @@
 % h1,h2 number of unwrapped protein units
 % e1,e2 chromatin state
 
-function [Q,dQdK,dQdE] = MatrixInitMicrodomainThisSiteNumber, TestSiteNumber)
+function [Q,dQdK,dQdE] = MatrixInitMicrodomain(ThisSiteNumber, TestSiteNumber)
 
 global Lpolymer fNumberOfLigands rank eNumberOfChromatinStates R
 global m mStart % ligand lengthes: integer, dimension (1:10)
