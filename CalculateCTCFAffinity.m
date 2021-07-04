@@ -2,7 +2,7 @@
 % map for CTCF using the PWM method, divided into lattice_size bp 
 % windows
 
-function [CTCF_profile] = ReadBindingConstants(DNA_seq)
+function [CTCF_profile] = CalculateCTCFAffinity(DNA_seq)
 
 % Set up lattice size and two constants based on lattice
 lattice_size=161;
