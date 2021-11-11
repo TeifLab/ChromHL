@@ -27,7 +27,7 @@ for(i in in.files){
 	# Plot chromatin state map
 	png(plot.name,height=300,width=700)
 	
-	matplot(x[,1]-reg_centre,x[,3:5],xlab="Lattice unit",ylab="Chromatin state",col=c("black","red","blue"),type="l",lty=1)
+	matplot(x[,1]-reg_centre,x[,3:5],xlab="Lattice unit relative to centre of region",ylab="Chromatin state",col=c("black","red","blue"),type="l",lty=1)
 	legend("topright",lty=1,col=c("black","red","blue"),legend=c("Het","Eu","CTCF"))
 	
 	dev.off()
