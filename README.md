@@ -32,7 +32,7 @@ This code is written in combination of R and MATLAB. It allows calculations of t
     - The text output files will be generated in a directory ````Text_output```` ready for processing.
     
 ### For a basic visualisation
-- From an R command line, run ````plot_chr_states.R```` inside the directory containing the text outputs. The basic visualisation will show the chromatin states per lattice unit, with each unit numbered relative to the centre of the region (corresponding to lattice unit 0) described in the text file.
+- From an R command line, run ````plot_chr_states.R```` inside the directory containing the text outputs. The basic visualisation will show the chromatin states per lattice unit, with the centre of the region marked with a vertical dotted line.
 
 ## Code overview
 ### Main calculation loop
