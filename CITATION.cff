@@ -1,15 +1,13 @@
 cff-version: 1.1.0
 message: "If you use this software, please cite it as below."
 authors:
-  - family-names: Thorn
-    given-names: Graeme
-    orcid: https://orcid.org/0000-0001-7704-5360
-  
-  - family-names: Teif
-    given-names: Vladimir
-    orcid: https://orcid.org/0000-0002-5931-7534
-  
-title: ChromHL: v1.0.1
+  - family-names: "Thorn"
+    given-names: "Graeme"
+    orcid: "https://orcid.org/0000-0001-7704-5360"
+  - family-names: "Teif"
+    given-names: "Vladimir"
+    orcid: "https://orcid.org/0000-0002-5931-7534"
+title: "ChromHL: v1.0.1"
 version: v1.0
 doi: 10.5281/zenodo.5987716
 date-released: 2022-02-06
