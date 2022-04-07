@@ -68,7 +68,7 @@ More detailed information on the calculation loop is here: https://github.com/Te
 
 ## How to cite
 
-Thorn G.J., Clarkson C.T., Rademacher A., Mamayusupova H., Schotta G., Rippe K. and Teif V.B. (2022) DNA sequence-dependent formation of heterochromatin nanodomains. Nature Communications 13, 1861.
+Thorn G.J., Clarkson C.T., Rademacher A., Mamayusupova H., Schotta G., Rippe K. and Teif V.B. (2022) DNA sequence-dependent formation of heterochromatin nanodomains. Nature Communications 13, 1861. https://doi.org/10.1038/s41467-022-29360-y
 
 ## License
 This work is licensed under a
