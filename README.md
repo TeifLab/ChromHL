@@ -1,4 +1,4 @@
-# ChromHL [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+# ChromHL [![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
 
 The mammalian epigenome contains thousands of heterochromatin nanodomains (HNDs) marked by di- and trimethylation of histone H3 at lysine 9, which have a typical size of 3-10 nucleosomes. However, the (epi)genetic determinants of their location and boundaries are only partly understood. Here, we compare four HND types in mouse embryonic stem cells, that are defined by histone methylases SUV39H1/2 or GLP, transcription factor ADNP or chromatin remodeller ATRX. Based on a novel chromatin hierarchical lattice framework termed **ChromHL**, we are able to predict HND maps with singe-nucleotide resolution. We find that HND nucleation can be rationalized by DNA sequence specific protein binding to PAX3/9, ADNP and LINE1 repeats. Depending on type of microdomains, boundaries are determined either by CTCF binding sites or by nucleosome-nucleosome and nucleosome-HP1 interactions. Our new framework allows predicting how patterns of H3K9me2/3 and other chromatin nanodomains are established and changed in processes such as cell differentiation.
 
@@ -72,10 +72,10 @@ Thorn G.J., Clarkson C.T., Rademacher A., Mamayusupova H., Schotta G., Rippe K. 
 
 ## License
 This work is licensed under a
-[Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
+[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License][cc-by-nc-nd].
 
-[![CC BY-NC 4.0][cc-by-nc-image]][cc-by-nc]
+[![CC BY-NC-ND 4.0][cc-by-nc-nd-image]][cc-by-nc-nd]
 
-[cc-by-nc]: http://creativecommons.org/licenses/by-nc/4.0/
-[cc-by-nc-image]: https://licensebuttons.net/l/by-nc/4.0/88x31.png
-[cc-by-nc-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg
+[cc-by-nc-nd]: https://creativecommons.org/licenses/by-nc-nd/4.0/
+[cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
+[cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY%20NC%20ND%204.0-lightgrey.svg
