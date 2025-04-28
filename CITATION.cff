@@ -1,4 +1,19 @@
 cff-version: 1.0.1
-message: "If you use this software, please cite the following publication:
+
+If you use this software, please cite the following publication:
 
 Thorn G.J., Clarkson C.T., Rademacher A., Mamayusupova H., Schotta G., Rippe K. and Teif V.B. (2022) DNA sequence-dependent formation of heterochromatin nanodomains. Nature Communications 13, 1861 
+
+In addition, please cite the following software:
+
+authors:
+   - family-names: "Thorn"
+     given-names: "Graeme"
+     orcid: "https://orcid.org/0000-0001-7704-5360"
+   - family-names: "Teif"
+     given-names: "Vladimir"
+     orcid: "https://orcid.org/0000-0002-5931-7534"
+ title: "ChromHL v1.0.1"
+ version: v1.0.1
+ doi: 10.5281/zenodo.5987716
+ date-released: 2022-02-06
